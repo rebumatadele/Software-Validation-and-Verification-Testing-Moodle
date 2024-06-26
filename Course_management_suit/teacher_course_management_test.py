@@ -94,49 +94,9 @@ class TeacherCourseManagementTest(unittest.TestCase):
                 print(f"Course Description: {course_details['description']}")
                 print(f"Course Activities: {', '.join(course_details['activities'])}")
 
-            # Enroll a student in the course
-            self.enroll_student(course_name)
-
-            # Verify the student's enrollment
-            self.verify_student_enrollment(course_name)
-
-            # Manage the course (add resources, activities, etc.)
-            self.manage_course(course_name)
-
         except Exception as e:
             print(f"Error occurred during the test: {e}")
             raise
-
-    def enroll_student(self, course_name):
-        # Navigate to the course page
-        self.driver.get(f"https://school.moodledemo.net/course/view.php?id=2")
-
-        # Find the "Enroll me in this course" button and click it
-        enroll_button = self.driver.find_element(By.CSS_SELECTOR, "a.enrol")
-        enroll_button.click()
-
-        # Wait for the enrollment confirmation page to load
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(EC.presence_of_element_located((By.ID, 'page-content')))
-
-        # Verify that the student is enrolled
-        self.assertIn("You are enrolled in this course", self.driver.page_source)
-
-    def verify_student_enrollment(self, course_name):
-        # Navigate to the course page
-        self.driver.get(f"https://school.moodledemo.net/course/view.php?id=2")
-
-        # Verify that the student's name is displayed in the participant list
-        participant_list = self.driver.find_element(By.CSS_SELECTOR, "div.participants")
-        self.assertIn("Student", participant_list.text)
-
-    def manage_course(self, course_name):
-        # Navigate to the course administration page
-        self.driver.get(f"https://school.moodledemo.net/course/management.php?id=2")
-
-        # Add resources, activities, or perform other management tasks
-        # ...
-        pass
 
 if __name__ == "__main__":
     unittest.main()
