@@ -44,7 +44,7 @@ class TestAddUser(unittest.TestCase):
         firstname_field.send_keys('rebuma')
         lastname_field.send_keys('tadele')
         email_field.send_keys('rebuma.tadele@example.com')
-        username_field.send_keys('rebuma.username')
+        username_field.send_keys('rebuma_username')
         password_field.send_keys('moodle123')
         create_user_button = self.driver.find_element(By.ID, 'id_submitbutton')
         create_user_button.click()
