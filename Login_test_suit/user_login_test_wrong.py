@@ -19,7 +19,7 @@ class LoginTest(unittest.TestCase):
         self.driver.quit()
 
     def test_login(self):
-        self.login_as(self.user_role, "moodle")
+        self.login_as(self.user_role, "wrong password")
 
     def login_as(self, user, password):
         try:
@@ -45,7 +45,7 @@ class LoginTest(unittest.TestCase):
             wait.until(EC.presence_of_element_located((By.ID, 'page-wrapper')))
 
             # Verify that the user is logged in
-            if 'My courses | Mount Orange School' in self.driver.title:
+            if 'wrong password' in self.driver.title:
                 print("Test case passed")
             else:
                 print("Test case failed")
